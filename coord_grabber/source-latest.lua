@@ -3,7 +3,6 @@
 local Players = game:GetService("Players")
 local TS = game:GetService("TweenService")
 local plr = Players.LocalPlayer
-local char = plr.Character
 local plrlist = Players:GetChildren()
 local target
 
@@ -96,7 +95,7 @@ localcords.TextWrapped = true
 localcords.ZIndex = 0
 spawn(function()
 	while wait() do 
-		localcords.Text = "Your coordinates : ("..math.round(char.HumanoidRootPart.Position.X)..", "..math.round(char.HumanoidRootPart.Position.Y)..", "..math.round(char.HumanoidRootPart.Position.Z)..")"
+		localcords.Text = "Your coordinates : ("..math.round(plr.Character.HumanoidRootPart.Position.X)..", "..math.round(plr.Character.HumanoidRootPart.Position.Y)..", "..math.round(plr.Character.HumanoidRootPart.Position.Z)..")"
 	end
 end)
 
