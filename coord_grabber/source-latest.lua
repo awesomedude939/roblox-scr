@@ -39,6 +39,7 @@ function updatelist(filter)
 			btn.txt.Text = plr.Name
 			btn.Name = plr.Name
 			btn.Parent = namelist
+			spawn(function()
 			btn.MouseEnter:Connect(function()
 				TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(50,50,50)}):Play()
 			end)
@@ -52,6 +53,8 @@ function updatelist(filter)
 				TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(75,75,75)}):Play()
 				target = plr
 			end)
+		        end)
+			namelist.Size = UDim2.new(namelist.Size.X,namelist.Size.Z + 20)
 		end
 	end
 end
