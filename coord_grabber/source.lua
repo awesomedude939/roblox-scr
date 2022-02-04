@@ -1,6 +1,5 @@
 -- awesomedude939, frosty GUI TO LUA
-if game:GetService("HttpService"):JSONDecode(loadstring(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/coord_grabber/version.json"))()).version ~= "1.0" then print("Outdated version! updated version sent to clipboard") setclipboard("loadstring(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/coord_grabber/source.lua"))()") return end 
-
+print("Version 1.0")
 local Players = game:GetService("Players")
 local TS = game:GetService("TweenService")
 local plr = Players.LocalPlayer
