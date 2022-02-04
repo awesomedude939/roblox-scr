@@ -27,11 +27,11 @@ local title = Instance.new("TextLabel")
 
 function updatelist(filter)
 	for i,v in pairs(namelist:GetChildren()) do 
-		if v.Name ~= "dbtn" then 
+		if v.Name ~= "dbtn" and not v:IsA("UIListLayout") then 
 			v:Destroy()
 		end
 	end
-
+	plrlist = Players:GetChildren()
 	for i,plr in pairs(plrlist) do 
 		if filter == nil or string.match(string.lower(plr.Name),"^"..filter) or string.match(string.upper(plr.Name),"^"..filter) then 
 			local btn = dbtn:Clone()
@@ -54,7 +54,6 @@ function updatelist(filter)
 					target = plr
 				end)
 			end)
-			namelist.Size = UDim2.new(namelist.Size.X,namelist.Size.Z + 20)
 		end
 	end
 end
@@ -94,6 +93,7 @@ localcords.TextColor3 = Color3.fromRGB(255, 255, 255)
 localcords.TextSize = 15.000
 localcords.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 localcords.TextWrapped = true
+localcords.ZIndex = 0
 spawn(function()
 	while wait() do 
 		localcords.Text = "Your coordinates : ("..math.round(char.HumanoidRootPart.Position.X)..", "..math.round(char.HumanoidRootPart.Position.Y)..", "..math.round(char.HumanoidRootPart.Position.Z)..")"
@@ -214,6 +214,7 @@ plrcords.TextColor3 = Color3.fromRGB(255, 255, 255)
 plrcords.TextSize = 15.000
 plrcords.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 plrcords.TextWrapped = true
+plrcords.ZIndex = 0
 spawn(function()
 	while wait() do 
 		pcall(function()
