@@ -1,5 +1,4 @@
 -- awesomedude939, frosty GUI TO LUA
-print("Version 1.0")
 local Players = game:GetService("Players")
 local TS = game:GetService("TweenService")
 local plr = Players.LocalPlayer
