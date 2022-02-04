@@ -60,7 +60,7 @@ cordgrabber.Name = "cordgrabber"
 if syn then 
 	syn.protect_gui(cordgrabber)
 end
-cordgrabber.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+cordgrabber.Parent = game:GetService("CoreGui")
 cordgrabber.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 main.Name = "main"
