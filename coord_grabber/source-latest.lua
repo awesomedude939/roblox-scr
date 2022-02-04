@@ -31,7 +31,7 @@ function updatelist(filter)
 			v:Destroy()
 		end
 	end
-	
+
 	for i,plr in pairs(plrlist) do 
 		if filter == nil or string.match(string.lower(plr.Name),"^"..filter) or string.match(string.upper(plr.Name),"^"..filter) then 
 			local btn = dbtn:Clone()
@@ -40,20 +40,22 @@ function updatelist(filter)
 			btn.Name = plr.Name
 			btn.Parent = namelist
 			spawn(function()
-			btn.MouseEnter:Connect(function()
-				TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(50,50,50)}):Play()
+				btn.MouseEnter:Connect(function()
+					TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(50,50,50)}):Play()
+				end)
+				btn.MouseLeave:Connect(function()
+					TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(75, 75, 75)}):Play()
+				end)
+				btn.MouseButton1Down:Connect(function()
+					TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(30,30,30)}):Play()
+				end)
+				btn.MouseButton1Up:Connect(function()
+					TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(75,75,75)}):Play()
+					target = plr
+				end)
 			end)
-			btn.MouseLeave:Connect(function()
-				TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(75, 75, 75)}):Play()
-			end)
-			btn.MouseButton1Down:Connect(function()
-				TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(30,30,30)}):Play()
-			end)
-			btn.MouseButton1Up:Connect(function()
-				TS:Create(btn.txt,TweenInfo.new(.15),{BackgroundColor3 = Color3.fromRGB(75,75,75)}):Play()
-				target = plr
-			end)
-		        end)
+			print(plr)
+			print(btn)
 			namelist.Size = UDim2.new(namelist.Size.X,namelist.Size.Z + 20)
 		end
 	end
@@ -214,9 +216,11 @@ plrcords.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 plrcords.TextWrapped = true
 spawn(function()
 	while wait() do 
-		if target ~= nil and typeof(target) == "Instance" then 
-			plrcords.Text = "Player coordinates : ("..math.round(target.Character.HumanoidRootPart.Position.X)..", "..math.round(target.Character.HumanoidRootPart.Position.Y)..", "..math.round(target.Character.HumanoidRootPart.Position.Z)..")"
-		end
+		pcall(function()
+			if target ~= nil and typeof(target) == "Instance" then 
+				plrcords.Text = "Player coordinates : ("..math.round(target.Character.HumanoidRootPart.Position.X)..", "..math.round(target.Character.HumanoidRootPart.Position.Y)..", "..math.round(target.Character.HumanoidRootPart.Position.Z)..")"
+			end
+		end)
 	end
 end)
 
