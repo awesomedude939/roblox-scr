@@ -54,8 +54,6 @@ function updatelist(filter)
 					target = plr
 				end)
 			end)
-			print(plr)
-			print(btn)
 			namelist.Size = UDim2.new(namelist.Size.X,namelist.Size.Z + 20)
 		end
 	end
@@ -74,6 +72,8 @@ main.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
 main.BorderSizePixel = 0
 main.Position = UDim2.new(0.77275151, 0, 0.163666114, 0)
 main.Size = UDim2.new(0, 239, 0, 28)
+main.Active = true
+main.Draggable = true
 
 window.Name = "window"
 window.Parent = main
