@@ -95,7 +95,9 @@ localcords.TextWrapped = true
 localcords.ZIndex = 0
 spawn(function()
 	while wait() do 
-		localcords.Text = "Your coordinates : ("..math.round(plr.Character.HumanoidRootPart.Position.X)..", "..math.round(plr.Character.HumanoidRootPart.Position.Y)..", "..math.round(plr.Character.HumanoidRootPart.Position.Z)..")"
+		pcall(function()
+			localcords.Text = "Your coordinates : ("..math.round(plr.Character.HumanoidRootPart.Position.X)..", "..math.round(plr.Character.HumanoidRootPart.Position.Y)..", "..math.round(plr.Character.HumanoidRootPart.Position.Z)..")"
+		end)
 	end
 end)
 
