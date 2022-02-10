@@ -37,7 +37,7 @@ function getdatatype(datatype,str,color3)
 		return("OverlapParams.new("..tostring(str)..")")
 	elseif datatype == "PathWaypoint" then
 		return("PathWaypoint.new("..tostring(str)..")")
-	elseif datatype == "PhysicalProperties then
+	elseif datatype == "PhysicalProperties" then
 		return("PhysicalProperties.new("..tostring(str)..")")
 	elseif datatype == "Random" then
 		return("Random.new("..tostring(str)..")")
