@@ -59,5 +59,17 @@ function getdatatype(datatype,str,color3)
 		return("UDim2.new("..tostring(str)..")")
 	elseif datatype == "Vector2" then
 		return("Vector2.new("..tostring(str)..")")
+	elseif datatype == "Vector2int16" then
+		return("Vector2int16.new("..tostring(str)..")")
+	elseif datatype == "Vector3" then
+		return("Vector3.new("..tostring(str)..")")
+	elseif datatype == "Vector3int16" then
+		return("Vector3int16.new("..tostring(str)..")")
+	elseif datatype == "string" then
+		return("\""..str.."\"")
+	elseif datatype == "number" or datatype == "nil" or datatype == "boolean" then
+		return(str)
+	elseif datatype == "table" then
+		return("{..table.concat(str,", ").."}"
 	end
 end
