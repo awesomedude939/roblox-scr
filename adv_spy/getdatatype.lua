@@ -66,10 +66,14 @@ function getdatatype(datatype,str,color3)
 	elseif datatype == "Vector3int16" then
 		return("Vector3int16.new("..tostring(str)..")")
 	elseif datatype == "string" then
-		return("\""..str.."\"")
+		return("\""..tostring(str).."\"")
 	elseif datatype == "number" or datatype == "nil" or datatype == "boolean" then
-		return(str)
+		return(tostring(str))
 	elseif datatype == "table" then
-		return("{..table.concat(str,", ").."}"
+		if typeof(str) == "table" then
+			return("{"..table.concat(str,", ").."}")
+		elseif typeof(str) == "string" then
+			return("{"..tostring(str).."}")
+		end
 	end
 end
