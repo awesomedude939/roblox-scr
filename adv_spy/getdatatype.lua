@@ -26,7 +26,13 @@ function getdatatype(datatype,str,color3)
 	elseif datatype == "FloatCurveKey" then 
 		return("FloatCurveKey.new("..tostring(str)..")")
 	elseif datatype == "Instance" then
-		return("Instance.new("..tostring(str)..")")
+		if typeof(str) == "Instance" and str.Parent == nil then
+		return("Instance.new("..tostring(datatype)..")")
+		elseif typeof(str) == "Instance" and str.Parent ~= nil then
+		return(str:GetFullName())
+		elseif typeof(str) == "string" then
+		return("Instance.new("..tostring(datatype)..")")
+		end
 	elseif datatype == "NumberRange" then
 		return("NumberRange.new("..tostring(str)..")")
 	elseif datatype == "NumberSequence" then
