@@ -87,9 +87,9 @@ function getdatatype(datatype,str,color3)
 					end
 				else
 					if i ~= #str then
-						rt = rt..getdatatype(typeof(v),v)..","
+						rt = rt..getdatatype("table",v)..","
 					else
-						rt = rt..getdatatype(typeof(v),v)..","
+						rt = rt..getdatatype("table",v)
 					end
 				end
 			end
