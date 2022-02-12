@@ -2,9 +2,6 @@ getgenv().ExcludeListRS = {}
 rconsoleclear()
 rconsolename("Adv Spy")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/adv_spy/getdatatype.lua"),"this is custom stack")()
- -- sorry for being script kiddie :( 
- -- i stole some code from https://pastebin.com/raw/BDhSQqUU
- -- just the function GetFullPathOfAnInstance ok
 function GetFullPathOfAnInstance(instance)
     local name = instance.Name
     local head = (#name > 0 and '.' .. name) or "['']"
