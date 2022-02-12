@@ -80,9 +80,9 @@ function getdatatype(datatype,str,color3)
 			local rt = "{"
 			for i,v in pairs(str) do
 				if i ~= #str then
-					rt = rt..getdatatype(v)..","
+					rt = rt..getdatatype(typeof(v),v)..","
 					else
-					rt = rt..getdatatype(v)
+					rt = rt..getdatatype(typeof(v),v)
 				end
 			end
 			rt = rt.."}"
