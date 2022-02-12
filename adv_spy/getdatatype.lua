@@ -79,18 +79,10 @@ function getdatatype(datatype,str,color3)
 		if typeof(str) == "table" then
 			local rt = "{"
 			for i,v in pairs(str) do
-				if typeof(v) ~= "table" then
-					if i ~= #str then
-					rt = rt..tostring(v)..","
+				if i ~= #str then
+					rt = rt..getdatatype(v)..","
 					else
-					rt = rt..tostring(v)
-					end
-				else
-					if i ~= #str then
-						rt = rt..getdatatype("table",v)..","
-					else
-						rt = rt..getdatatype("table",v)
-					end
+					rt = rt..getdatatype(v)
 				end
 			end
 			rt = rt.."}"
