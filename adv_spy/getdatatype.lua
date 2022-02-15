@@ -77,11 +77,13 @@ function getdatatype(datatype,str,color3)
 		return(tostring(str))
 	elseif datatype == "table" then
 		if typeof(str) == "table" then
+			local r1 = false
 			local rt = "{"
 			for i,v in pairs(str) do
 				if type(i) ~= "number" then 
 					if str[#str] ~= v then
 					rt = rt..i.." = "..getdatatype(typeof(v),v)..","
+					r1 = true
 					else
 					rt = rt..i.." = "..getdatatype(typeof(v),v)
 				end
@@ -92,6 +94,9 @@ function getdatatype(datatype,str,color3)
 					else
 					rt = rt..getdatatype(typeof(v),v)
 				end
+			end
+			if r1 == true then 
+				string.sub(rt,1,-2)
 			end
 			rt = rt.."}"
 			return(rt)
