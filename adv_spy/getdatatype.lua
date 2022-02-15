@@ -91,15 +91,6 @@ function getdatatype(datatype,str,color3)
 			local r1 = false
 			local rt = "{"
 			for i,v in pairs(str) do
-				if type(i) ~= "number" then 
-					if str[#str] ~= v then
-					rt = rt..i.." = "..getdatatype(typeof(v),v)..","
-					r1 = true
-					else
-					rt = rt..i.." = "..getdatatype(typeof(v),v)
-				end
-				end
-				
 				if i ~= #str then
 					rt = rt..getdatatype(typeof(v),v)..","
 					else
