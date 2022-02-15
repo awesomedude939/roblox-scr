@@ -74,15 +74,15 @@ function getdatatype(datatype,str,color3)
 	elseif datatype == "string" then
 		local rt = ""
 		rt = str
+		if string.find(str,"\\") then
+			rt = string.gsub(rt,"\\", "\\\\")
+		end
 		if string.find(str,"\"") then 
 			rt = string.gsub(rt,"\"","\\\"")
 		end
 		if string.find(str,"\n") then 
 			rt = string.gsub(rt,"\n","\\n")
 	        end
-		if string.find(str,"\\") then
-			rt = string.gsub(rt,"\\", "\\\\")
-		end
 		return("\""..tostring(rt).."\"")
 	elseif datatype == "number" or datatype == "nil" or datatype == "boolean" then
 		return(tostring(str))
