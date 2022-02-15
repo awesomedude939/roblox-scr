@@ -73,13 +73,17 @@ function getdatatype(datatype,str,color3)
 		return("Vector3int16.new("..tostring(str)..")")
 	elseif datatype == "string" then
 		local rt = ""
+		rt = str
 		if string.find(str,"\"") then 
-			string.gsub(str,"\"","\\\"")
+			rt = string.gsub(rt,"\"","\\\"")
 		end
 		if string.find(str,"\n") then 
-			string.gsub(str,"\n","\\n")
+			rt = string.gsub(rt,"\n","\\n")
 	        end
-		return("\""..tostring(str).."\"")
+		if string.find(str,"\\") then
+			rt = string.gsub(rt,"\\", "\\\")
+		end
+		return("\""..tostring(rt).."\"")
 	elseif datatype == "number" or datatype == "nil" or datatype == "boolean" then
 		return(tostring(str))
 	elseif datatype == "table" then
