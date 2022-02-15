@@ -76,7 +76,7 @@ function getdatatype(datatype,str,color3)
 		if string.find(str,"\"") then 
 			string.gsub(str,"\"","\\\"")
 		end
-		if string.find(str,"\n" then 
+		if string.find(str,"\n") then 
 			string.gsub(str,"\n","\\n")
 	        end
 		return("\""..tostring(str).."\"")
