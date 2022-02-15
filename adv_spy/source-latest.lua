@@ -1,5 +1,4 @@
 if not rconsoleclear or not rconsolename or not rconsoleprint or not rconsoleinput then return end
-getgenv().ExcludeListRS = {}
 rconsoleclear()
 rconsolename("Adv Spy")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/adv_spy/getdatatype.lua"))()
