@@ -42,7 +42,7 @@ OldNamecall = hookmetamethod(game, "__namecall", function(...)
 	local args = {...}
 	local Self = args[1]
 	local namecall = getnamecallmethod()
-	local formatx = "game."
+	local formatx = ""
 	if namecall == "FireServer" and not table.find(getgenv().ExcludeListRS, Self.Name) then
 	    pcall(function()
 	    formatx = formatx..GetFullPathOfAnInstance(Self)
