@@ -16,7 +16,11 @@ function threading.new(func,args)
 	local object = {}
 	function object.start()
 		spawn(function()
-			func(table.unpack(args))
+			if args then 
+				func(table.unpack(args))
+			else
+				func()
+			end
 		end)
 	end
 	return object
