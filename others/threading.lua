@@ -1,5 +1,5 @@
 --[[
-Thread | Threading.new([function] Function,[table] Args)
+Thread | threading.new([function] Function,[table] Args)
 Thread.start()
 
 ]]
