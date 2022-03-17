@@ -83,9 +83,6 @@ function getdatatype(datatype,str,color3)
 		if string.find(str,"\\") then
 			rt = string.gsub(rt,"\\", "\\\\")
 		end
-		if string.find(str,"\"") then 
-			rt = string.gsub(rt,"\"","\\\"")
-		end
 		for i,v in pairs(special) do 
 			if string.find(str,i) then 
 			    rt = string.gsub(rt,i,v)
