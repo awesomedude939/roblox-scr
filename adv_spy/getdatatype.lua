@@ -68,7 +68,7 @@ function getdatatype(datatype,str,color3)
 	elseif datatype == "string" then
 		local special = {
 		["\\"] = "\\\\",
-		["\""] = "\\"",
+		["\""] = "\\\"",
 		["\0"] = "\\0",
 		["\a"] = "\\a",
 		["\b"] = "\\b",
