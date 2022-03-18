@@ -117,7 +117,7 @@ function getdatatype(datatype,str)
 					rt = rt.."["..getdatatype(typeof(i),i).."] = "..getdatatype(typeof(v),v)
 				end
 			end
-			if string.sub(str,#str,#str) == "," then 
+			if string.sub(rt,#rt,#rt) == "," then 
 			str:sub(0, -2)
 			end
 			rt = rt.."}"
