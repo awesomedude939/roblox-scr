@@ -1,22 +1,37 @@
-function getdatatype(datatype,str,color3)
+function getdatatype(datatype,str)
 	if datatype == "Axes" then
-		return("Axes.new("..tostring(str)..")")
+		local rt = "Axes.new(%s)"
+
+		return(string.format(rt, tostring(str)))
 	elseif datatype == "BrickColor" then 
-		return("BrickColor.new(\""..tostring(str).."\")")
+		local rt = "BrickColor.new(\"%s\")"
+		return(string.format(rt,tostring(str)))
 	elseif datatype == "CatalogSearchParams" then 
 		return("CatalogSearchParams.new("..tostring(str)..")")
 	elseif datatype == "CFrame" then
 		return("CFrame.new("..str..")")
 	elseif datatype == "Color3" then 
-		if color3 == "rgb" then
-			return("Color3.fromRGB("..tostring(str)..")")
-		elseif color3 == nil or color3 ~= "rgb" then
-			return("Color3.new("..tostring(str)..")")
-		end
+		local rt = "Color3.fromRGB(%s,%s,%s)"
+		hex = str:ToHex():gsub("#","")
+		r,g,b = tonumber("0x"..hex:sub(1,2)), tonumber("0x"..hex:sub(3,4)), tonumber("0x"..hex:sub(5,6))
+		return(string.format(rt,tostring(r),tostring(g),tostring(b)))
 	elseif datatype == "ColorSequence" then 
-		return("ColorSequence.new("..tostring(str)..")")
+		local rt = "ColorSequence.new{%s}"
+		local rt2 = ""  
+		for i,v in pairs(str.Keypoints) do 
+			if i ~= #str.Keypoints then 
+				rt2 = rt2..getdatatype(typeof(v),v)..", "
+			else
+				rt2 = rt2..getdatatype(typeof(v),v)
+			end
+		end
+		return(string.format(rt,rt2))
 	elseif datatype == "ColorSequenceKeypoint" then 
-		return("ColorSequenceKeypoint.new("..tostring(str)..")")
+		local rt = "ColorSequenceKeypoint.new(%s)"
+		local rt2 = ""
+		rt2 = rt2..getdatatype(typeof(str.Time),str.Time)..", "
+		rt2 = rt2..getdatatype(typeof(str.Value),str.Value)
+		return(string.format(rt,rt2))
 	elseif datatype == "DockWidgetPluginGuiInfo" then 
 		return("DockWidgetPluginGuiInfo.new("..tostring(str)..")")
 	elseif datatype == "Enums" then 
@@ -67,16 +82,16 @@ function getdatatype(datatype,str,color3)
 		return("Vector3int16.new("..tostring(str)..")")
 	elseif datatype == "string" then
 		local special = {
-		["\\"] = "\\\\",
-		["\""] = "\\\"",
-		["\0"] = "\\0",
-		["\a"] = "\\a",
-		["\b"] = "\\b",
-		["\f"] = "\\f",
-		["\n"] = "\\n",
-		["\r"] = "\\r",
-		["\t"] = "\\t",
-		["\v"] = "\\v"
+			["\\"] = "\\\\",
+			["\""] = "\\\"",
+			["\0"] = "\\0",
+			["\a"] = "\\a",
+			["\b"] = "\\b",
+			["\f"] = "\\f",
+			["\n"] = "\\n",
+			["\r"] = "\\r",
+			["\t"] = "\\t",
+			["\v"] = "\\v"
 		}
 		local rt = ""
 		rt = str
@@ -85,7 +100,7 @@ function getdatatype(datatype,str,color3)
 		end
 		for i,v in pairs(special) do 
 			if string.find(str,i) then 
-			    rt = string.gsub(rt,i,v)
+				rt = string.gsub(rt,i,v)
 			end
 		end
 		return("\""..tostring(rt).."\"")
@@ -97,10 +112,13 @@ function getdatatype(datatype,str,color3)
 			local rt = "{"
 			for i,v in pairs(str) do 
 				if v ~= str[#str] then
-				rt = rt.."[\""..i.."\"] = "..getdatatype(typeof(v),v)..","
+					rt = rt.."["..getdatatype(typeof(i),i).."] = "..getdatatype(typeof(v),v)..","
 				else 
-				rt = rt.."[\""..i.."\"] = "..getdatatype(typeof(v),v)
+					rt = rt.."["..getdatatype(typeof(i),i).."] = "..getdatatype(typeof(v),v)
 				end
+			end
+			if string.sub(str,#str,#str) == "," then 
+			str:sub(0, -2)
 			end
 			rt = rt.."}"
 			return(rt)
