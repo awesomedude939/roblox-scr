@@ -1,3 +1,5 @@
+if getgenv().AdvSpyExecuted then return end
+getgenv().AdvSpyExecuted = true
 getgenv().ExcludeListRS = {}
 rconsoleclear()
 rconsolename("Adv Spy 1.0.1")
