@@ -1,0 +1,3 @@
+function readreturn(...)
+    return{...}
+end
