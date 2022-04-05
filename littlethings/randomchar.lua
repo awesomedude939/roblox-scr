@@ -4,7 +4,7 @@ return function(size,chars)
 	end
 	local stringreturn = ""
 	co = string.split(chars,"")
-	for i = 0,size do 
+	for i = 1,size do 
 		stringreturn = stringreturn..co[math.random(#co)]
 	end
 	return stringreturn
