@@ -44,7 +44,7 @@ function ov(namecall,args)
     formatx = formatx..GetFullPathOfAnInstance(args[1])
     formatx = formatx..":"..tostring(namecall).."("
     for i,v in pairs(args) do 
-	        if i ~= 1 and i ~= #args then 
+	        if i ~= #args then 
 	        formatx = formatx..getdatatype(typeof(v),v)..", "
 	        elseif i == #args then
 	            formatx = formatx..getdatatype(typeof(v),v)
