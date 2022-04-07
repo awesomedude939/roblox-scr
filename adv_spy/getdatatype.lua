@@ -1,5 +1,39 @@
 function getdatatype(datatype,str)
 	datatype = typeof(str)
+	function GetFullPathOfAnInstance(instance)
+    local name = instance.Name
+    local head = (#name > 0 and '.' .. name) or "['']"
+    
+    if not instance.Parent and instance ~= game then
+        return head .. " --[[ PARENTED TO NIL OR DESTROYED ]]"
+    end
+    
+    if instance == game then
+        return "game"
+    elseif instance == workspace then
+        return "workspace"
+    else
+        local _success, result = pcall(game.GetService, game, instance.ClassName)
+        
+        if result then
+            head = ':GetService("' .. instance.ClassName .. '")'
+        elseif instance == client then
+            head = '.LocalPlayer' 
+        else
+            local nonAlphaNum = name:gsub('[%w_]', '')
+            local noPunct = nonAlphaNum:gsub('[%s%p]', '')
+            
+            if tonumber(name:sub(1, 1)) or (#nonAlphaNum ~= 0 and #noPunct == 0) then
+                head = '["' .. name:gsub('"', '\\"'):gsub('\\', '\\\\') .. '"]'
+            elseif #nonAlphaNum ~= 0 and #noPunct > 0 then
+                head = '[' .. toUnicode(name) .. ']'
+            end
+        end
+    end
+    
+    return GetFullPathOfAnInstance(instance.Parent) .. head
+end
+
 	if datatype == "Axes" then
 		local rt = "Axes.new(%s)"
 
@@ -42,7 +76,10 @@ function getdatatype(datatype,str)
 	elseif datatype == "FloatCurveKey" then 
 		return("FloatCurveKey.new("..tostring(str)..")")
 	elseif datatype == "Instance" then
-		return(str.Parent:GetFullName())
+		if str.Parent == nil then 
+			return(string.format("Instance.new(%s)",str.ClassName))
+		end
+		return(GetFullPathOfAnInstance(str))
 	elseif datatype == "NumberRange" then
 		return("NumberRange.new("..tostring(str)..")")
 	elseif datatype == "NumberSequence" then
