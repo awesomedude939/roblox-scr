@@ -61,10 +61,10 @@ OldNamecall = hookmetamethod(game, "__namecall", function(Self, ...)
 	local formatx = ""
 	if namecall == "FireServer" and not table.find(getgenv().ExcludeListRS, Self.Name) and Self.ClassName == "RemoteEvent" then
 	    ov("FireServer",args)
-	    return OldNamecall(unpack(args))
+	    return OldNamecall(Self,unpack(args))
 	elseif namecall == "InvokeServer" and not table.find(getgenv().ExcludeListRS, Self.Name) and Self.ClassName == "RemoteFunction" then    
 	    ov("InvokeServer",args)
-	    return OldNamecall(unpack(args))
+	    return OldNamecall(Self,unpack(args))
 	end
-	return OldNamecall(...)
+	return OldNamecall(Self,...)
 end)
