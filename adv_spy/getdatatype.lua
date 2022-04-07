@@ -9,7 +9,7 @@ function getdatatype(datatype,str)
 	elseif datatype == "CatalogSearchParams" then 
 		return("CatalogSearchParams.new("..tostring(str)..")")
 	elseif datatype == "CFrame" then
-		return("CFrame.new("..str..")")
+		return("CFrame.new("..tostring(str)..")")
 	elseif datatype == "Color3" then 
 		local rt = "Color3.fromRGB(%s,%s,%s)"
 		hex = str:ToHex():gsub("#","")
@@ -118,7 +118,7 @@ function getdatatype(datatype,str)
 				end
 			end
 			if string.sub(rt,#rt,#rt) == "," then 
-			rt:sub(0, -2)
+				rt:sub(0, -2)
 			end
 			rt = rt.."}"
 			return(rt)
