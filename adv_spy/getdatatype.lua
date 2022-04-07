@@ -1,4 +1,5 @@
 function getdatatype(datatype,str)
+	datatype = typeof(str)
 	if datatype == "Axes" then
 		local rt = "Axes.new(%s)"
 
