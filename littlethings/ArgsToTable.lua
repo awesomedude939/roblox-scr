@@ -1,3 +1,3 @@
-function readreturn(...)
+return function(...)
     return{...}
 end
