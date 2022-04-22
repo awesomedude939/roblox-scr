@@ -1,39 +1,37 @@
 function getdatatype(datatype,str)
 	datatype = typeof(str)
 	function GetFullPathOfAnInstance(instance)
-		pcall(function()
-			local name = instance.Name
-			local head = (#name > 0 and '.' .. name) or "['']"
+		local name = instance.Name
+		local head = (#name > 0 and '.' .. name) or "['']"
 
-			if not instance.Parent and instance ~= game then
-				return head .. " --[[ PARENTED TO NIL OR DESTROYED ]]"
-			end
+		if not instance.Parent and instance ~= game then
+			return head .. " --[[ PARENTED TO NIL OR DESTROYED ]]"
+		end
 
-			if instance == game then
-				return "game"
-			elseif instance == workspace then
-				return "workspace"
+		if instance == game then
+			return "game"
+		elseif instance == workspace then
+			return "workspace"
+		else
+			local _success, result = pcall(game.GetService, game, instance.ClassName)
+
+			if result then
+				head = ':GetService("' .. instance.ClassName .. '")'
+			elseif instance == client then
+				head = '.LocalPlayer' 
 			else
-				local _success, result = pcall(game.GetService, game, instance.ClassName)
+				local nonAlphaNum = name:gsub('[%w_]', '')
+				local noPunct = nonAlphaNum:gsub('[%s%p]', '')
 
-				if result then
-					head = ':GetService("' .. instance.ClassName .. '")'
-				elseif instance == client then
-					head = '.LocalPlayer' 
-				else
-					local nonAlphaNum = name:gsub('[%w_]', '')
-					local noPunct = nonAlphaNum:gsub('[%s%p]', '')
-
-					if tonumber(name:sub(1, 1)) or (#nonAlphaNum ~= 0 and #noPunct == 0) then
-						head = '["' .. name:gsub('"', '\\"'):gsub('\\', '\\\\') .. '"]'
-					elseif #nonAlphaNum ~= 0 and #noPunct > 0 then
-						head = '[' .. toUnicode(name) .. ']'
-					end
+				if tonumber(name:sub(1, 1)) or (#nonAlphaNum ~= 0 and #noPunct == 0) then
+					head = '["' .. name:gsub('"', '\\"'):gsub('\\', '\\\\') .. '"]'
+				elseif #nonAlphaNum ~= 0 and #noPunct > 0 then
+					head = '[' .. toUnicode(name) .. ']'
 				end
 			end
+		end
 
-			return GetFullPathOfAnInstance(instance.Parent) .. head
-		end)
+		return GetFullPathOfAnInstance(instance.Parent) .. head
 	end
 
 	if datatype == "Axes" then
@@ -157,8 +155,10 @@ function getdatatype(datatype,str)
 					rt = rt.."["..getdatatype(typeof(i),i).."] = "..getdatatype(typeof(v),v)
 				end
 			end
+			print(rt)
 			if string.sub(rt,#rt,#rt) == "," then 
-				rt:sub(0, -2)
+				print(string.sub(rt,#rt,#rt))
+				rt = rt:sub(0, -2)
 			end
 			rt = rt.."}"
 			return(rt)
