@@ -66,5 +66,5 @@ OldNamecall = hookmetamethod(game, "__namecall", function(Self, ...)
 	    ov("InvokeServer",args)
 	    return OldNamecall(Self,unpack(args))
 	end
-	return OldNamecall(Self,...)
+	return OldNamecall(Self,args)
 end)
