@@ -76,7 +76,7 @@ function getdatatype(datatype,str)
 	elseif datatype == "FloatCurveKey" then 
 		return("FloatCurveKey.new("..tostring(str)..")")
 	elseif datatype == "Instance" then
-		if str.Parent == nil then 
+		if str.Parent == nil and str ~= game then 
 			return(string.format("Instance.new(\"%s\")",str.ClassName))
 		end
 		return(GetFullPathOfAnInstance(str))
