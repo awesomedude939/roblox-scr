@@ -27,5 +27,27 @@ function setdatatype(str : string)
 		end
 		rt = CFrame.new(unpack(rtable))
 		return rt
+	elseif string.match(str,"UDim2.new%(") then 
+		local rt 
+		local splitted = string.split(string.gsub(str,"Udim2.new%(",""),",")
+		rt = UDim2.new()
+		local rtable = {}
+		for i,v in pairs(splitted) do 
+			v = string.gsub(v,"%D+", "")
+			table.insert(rtable,v)
+		end
+		rt = UDim2.new(unpack(rtable))
+		return rt
+	elseif string.match(str,"Vector3.new%(") then 
+		local rt 
+		local splitted = string.split(string.gsub(str,"Vector3.new%(",""),",")
+		rt = UDim2.new()
+		local rtable = {}
+		for i,v in pairs(splitted) do
+			v = string.gsub(v,"%D+", "")
+			table.insert(rtable,v)
+		end 
+		rt = Vector3.new(unpack(rtable))
+		return rt
 	end
 end
