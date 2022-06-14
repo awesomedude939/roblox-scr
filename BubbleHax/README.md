@@ -1,1 +1,2 @@
-| BUBBLE HAX
+# BUBBLE HAX
+## VERSION : 1.0
