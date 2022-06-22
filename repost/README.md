@@ -1,12 +1,22 @@
-## PNG READER
+## PNG READER - MaximumADHD
 
 ```lua
-PNG:GetPixel(png,x,y)
+[Png] PNG.new(file)
 ```
-get color of pixel
+Load png using file
 
 ```lua
-PNG.new(file)
+[Color3] Png:GetPixel(Png,x,y)
 ```
-load png using file
-returns png
+Get color of pixel
+
+```lua
+[Color3] Png.Width()
+```
+Get width of Png
+
+```lua
+[Color3] PNG.Height(png,x,y)
+```
+Get height of Png
+
