@@ -157,7 +157,6 @@ function getdatatype(datatype,str)
 			end
 			print(rt)
 			if string.sub(rt,#rt,#rt) == "," then 
-				print(string.sub(rt,#rt,#rt))
 				rt = rt:sub(0, -2)
 			end
 			rt = rt.."}"
