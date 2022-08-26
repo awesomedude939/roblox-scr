@@ -16,7 +16,7 @@ Get color of pixel
 Get width of Png
 
 ```lua
-[Color3] PNG.Height
+[Color3] Png.Height
 ```
 Get height of Png
 
