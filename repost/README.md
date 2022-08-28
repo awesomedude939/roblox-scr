@@ -20,3 +20,9 @@ Get width of Png
 ```
 Get height of Png
 
+## PNG READER 2 - MaximumADHD awesomedude939
+
+```lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/repost/png_reader2.lua"),"PNG GetPixel Width Height")()
+```
+Script for Executor
