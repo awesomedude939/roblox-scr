@@ -1,11 +1,14 @@
 # RETRO STUDIO TO ROBLOX STUDIO
 
 #### Retro Studio Console Commands
-Load file```
+Load file
+```
 load [filename]
-```-------------------------
-Clear place```
+```
+-------------------------
+Clear place
+```
 clear
-```#### How to use
-
+```
+#### How to use
 Unfinished
