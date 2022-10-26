@@ -132,6 +132,7 @@ local ignore = {"ClassName", "Name", "Parent", "Archivable"}
 local template = {
 	["class"] = {
 		Name = "",
+		RBSName = "",
 		Year = 0,
 		Properties = {}
 	}
@@ -215,7 +216,8 @@ while wait() do
 		break
 	elseif iscmd("newclass") then 
 		local name = spoken["Arguments"][2]
-		local year = tonumber(spoken["Arguments"][3])
+		local rbsname = spoken["Arguments"][3]
+		local year = tonumber(spoken["Arguments"][4])
 
 		if not year or typeof(year) ~= "number" then 
 			year = 0 
@@ -224,6 +226,7 @@ while wait() do
 
 		template2.Name = name
 		template2.Year = year
+		template2.RBSName = rbsname
 
 		all[name] = template2
 		selectedclass = all[name]
