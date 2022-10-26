@@ -1,4 +1,4 @@
-# RETRO STUDIO TO ROBLOX STUDIO
+# ROBLOX STUDIO TO RETRO STUDIO
 
 ## Retro Studio Console Commands
 Load file
