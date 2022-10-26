@@ -3,8 +3,9 @@
 ### finish 
 Get result
 
-### newclass {name*, rbsname*, year*}
+### newclass {name/year, rbsname*, year*}
 Make new class
+OBS : you can only put year in the first argument if it is the only argumnent
 
 ### setprops
 Get properties from selected instance in Retro Studio and paste them into the selected class. 
