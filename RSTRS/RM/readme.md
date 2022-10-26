@@ -3,7 +3,7 @@
 ### finish 
 Get result
 
-### newclass {name, rbsname, year*}
+### newclass {name*, rbsname*, year*}
 Make new class
 
 ### setprops
