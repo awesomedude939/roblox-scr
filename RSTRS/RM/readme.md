@@ -3,7 +3,7 @@
 ### finish 
 Get result
 
-### newclass {name, year}
+### newclass {name, rbsname, year*}
 Make new class
 
 ### setprops
@@ -11,3 +11,6 @@ Get properties from selected instance in Retro Studio and paste them into the se
 
 ### selectclass {classname}
 Select classes that has been created with the 'newclass' command
+
+##### rbsname = Roblox Studio Name
+##### * = Optional
