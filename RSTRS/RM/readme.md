@@ -1,3 +1,5 @@
+# [!] You need LUA knowledge to use any of the scripts in here [!]
+
 # RSTRS Mounter
 
 ### finish 
