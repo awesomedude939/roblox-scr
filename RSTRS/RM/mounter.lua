@@ -1,5 +1,15 @@
 rconsoleclear()
 local ignore = {"ClassName", "Name", "Parent", "Archivable","UIListLayout","1Topbar"}
+local oldclasses = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/retro-studio/main/json/classes.json"))
+function getyear(c)
+    for i,v in pairs(oldclasses) do 
+        if string.split(v, " ")[1] == c and string.split(v, " ")[2] then 
+            return string.split(v, " ")[2]
+        end
+    end
+    return 0
+end 
+
 local template = {
 	["class"] = {
 		Name = "",
@@ -107,26 +117,79 @@ while wait() do
 			local selection = game.Players.LocalPlayer.PlayerScripts.SelectionService.GetSelection:Invoke()[1]
 
 			if selection then
-				local RobloxName = selection.ClassName
-				local RetroName = nil
-				local Year = tonumber(name) or 0
-				for i,v in pairs(pgui.StudioGui.Properties.ListOutline.PropertyList:GetChildren()) do 
-					if v.Name == "CategoryTemplate" then 
-						for i1,v1 in pairs(v:GetChildren()) do 
-							if v1.Name == "ClassName" then 
-								RetroName = v1.ValueHalf.Object.Text
+				if table.len(selection) == 1 then
+					local RobloxName = selection.ClassName
+					local RetroName = nil
+					local Year = tonumber(name) or 0
+					for i,v in pairs(pgui.StudioGui.Properties.ListOutline.PropertyList:GetChildren()) do 
+						if v.Name == "CategoryTemplate" then 
+							for i1,v1 in pairs(v:GetChildren()) do 
+								if v1.Name == "ClassName" then 
+									RetroName = v1.ValueHalf.Object.Text
+								end
 							end
 						end
 					end
-				end
-				local template2 = copytable(template["class"])
+					local template2 = copytable(template["class"])
 
-				template2.Name = RetroName
-				template2.Year = Year
-				template2.RBSName = RobloxName
-				all[RetroName] = template2
-				selectedclass = all[RetroName]
-				rconsoleprint("Class Created and selected.\n")
+					template2.Name = RetroName
+					template2.Year = Year
+					template2.RBSName = RobloxName
+					all[RetroName] = template2
+					selectedclass = all[RetroName]
+					local proplist = game:GetService("Players").LocalPlayer.PlayerGui.StudioGui.Properties.ListOutline.PropertyList
+
+					for i,v in pairs(proplist:GetChildren()) do 
+						if v.Name == "CategoryTemplate" then 
+							for i1,v1 in pairs(v:GetChildren()) do 
+								if not table.find(ignore, v1.Name) then 
+									local template2 = copytable(template["prop"])
+									template2.Name = v1.Name
+									template2.Readonly = v1.CanSelect.Value
+									selectedclass["Properties"][v1.Name] = template2
+								end
+							end
+						end
+					end  
+					rconsoleprint("Class Created and selected.\n")
+				else 
+				    for i,v in pairs(selection) do 
+					local RobloxName = selection.ClassName
+					local RetroName = nil
+					for i,v in pairs(pgui.StudioGui.Properties.ListOutline.PropertyList:GetChildren()) do 
+						if v.Name == "CategoryTemplate" then 
+							for i1,v1 in pairs(v:GetChildren()) do 
+								if v1.Name == "ClassName" then 
+									RetroName = v1.ValueHalf.Object.Text
+								end
+							end
+						end
+					end
+					local Year = getyear(RetroName)
+					local template2 = copytable(template["class"])
+
+					template2.Name = RetroName
+					template2.Year = Year
+					template2.RBSName = RobloxName
+					all[RetroName] = template2
+					selectedclass = all[RetroName]
+					local proplist = game:GetService("Players").LocalPlayer.PlayerGui.StudioGui.Properties.ListOutline.PropertyList
+
+					for i,v in pairs(proplist:GetChildren()) do 
+						if v.Name == "CategoryTemplate" then 
+							for i1,v1 in pairs(v:GetChildren()) do 
+								if not table.find(ignore, v1.Name) then 
+									local template2 = copytable(template["prop"])
+									template2.Name = v1.Name
+									template2.Readonly = v1.CanSelect.Value
+									selectedclass["Properties"][v1.Name] = template2
+								end
+							end
+						end
+					end  
+					end
+					rconsoleprint("All classes have been created and selected.\n")
+				end
 			else 
 				rconsoleprint("You must select an instance before this command.")
 			end
@@ -146,7 +209,7 @@ while wait() do
 				end
 			end
 		end  
-		rconsoleprint("Properties have been sent to selected class.\n")
+
 	elseif iscmd("selectclass") then 
 		local name = spoken["Arguments"][2]
 		if all[name] then 
