@@ -1,4 +1,5 @@
-local ignore = {"ClassName", "Name", "Parent", "Archivable"}
+rconsoleclear()
+local ignore = {"ClassName", "Name", "Parent", "Archivable","UIListLayout","1Topbar"}
 local template = {
 	["class"] = {
 		Name = "",
@@ -86,22 +87,65 @@ while wait() do
 		break
 	elseif iscmd("newclass") then 
 		local name = spoken["Arguments"][2]
-		local rbsname = spoken["Arguments"][3]
-		local year = tonumber(spoken["Arguments"][4])
+		if name and (not tonumber(name) and spoken["Arguments"][3])  then
+			local rbsname = spoken["Arguments"][3]
+			local year = tonumber(spoken["Arguments"][4])
+			if not year or typeof(year) ~= "number" then 
+				year = 0 
+			end
+			local template2 = copytable(template["class"])
 
-		if not year or typeof(year) ~= "number" then 
-			year = 0 
+			template2.Name = name
+			template2.Year = year
+			template2.RBSName = rbsname
+
+			all[name] = template2
+			selectedclass = all[name]
+			rconsoleprint("Class Created and selected.\n")
+		else 
+			local pgui = game:GetService("Players").LocalPlayer.PlayerGui
+			local selection = game.Players.LocalPlayer.PlayerScripts.SelectionService.GetSelection:Invoke()[1]
+
+			if selection then
+				local RobloxName = selection.ClassName
+				local RetroName = nil
+				local Year = tonumber(name) or 0
+				for i,v in pairs(pgui.StudioGui.Properties.ListOutline.PropertyList:GetChildren()) do 
+					if v.Name == "CategoryTemplate" then 
+						for i1,v1 in pairs(v:GetChildren()) do 
+							if v1.Name == "ClassName" then 
+								RetroName = v1.ValueHalf.Object.Text
+							end
+						end
+					end
+				end
+				local template2 = copytable(template["class"])
+
+				template2.Name = RetroName
+				template2.Year = Year
+				template2.RBSName = RobloxName
+				all[RetroName] = template2
+				selectedclass = all[RetroName]
+				rconsoleprint("Class Created and selected.\n")
+			else 
+				rconsoleprint("You must select an instance before this command.")
+			end
 		end
-		local template2 = copytable(template["class"])
-
-		template2.Name = name
-		template2.Year = year
-		template2.RBSName = rbsname
-
-		all[name] = template2
-		selectedclass = all[name]
-		rconsoleprint("Class Created and selected.\n")
 	elseif iscmd("setprops") then 
+		local proplist = game:GetService("Players").LocalPlayer.PlayerGui.StudioGui.Properties.ListOutline.PropertyList
+
+		for i,v in pairs(proplist:GetChildren()) do 
+			if v.Name == "CategoryTemplate" then 
+				for i1,v1 in pairs(v:GetChildren()) do 
+					if not table.find(ignore, v1.Name) then 
+						local template2 = copytable(template["prop"])
+						template2.Name = v1.Name
+						template2.Readonly = v1.CanSelect.Value
+						selectedclass["Properties"][v1.Name] = template2
+					end
+				end
+			end
+		end  
 		rconsoleprint("Properties have been sent to selected class.\n")
 	elseif iscmd("selectclass") then 
 		local name = spoken["Arguments"][2]
@@ -133,11 +177,12 @@ while wait() do
 		local filename = rconsoleinput()
 
 		s,e = pcall(function()
-			writefile(filename, result)
+			writefile(filename..".txt", result)
 			rconsoleprint("Result has been saved to workspace.\n")
 		end)
 		if not s and e then 
-			rconsoleprint("Fail to save result to workspace.\n")
+			printconsole(tostring(e),255,0,0)
+			rconsoleprint("Fail to save result to workspace. Error has been printed to console\n")
 		end
 	elseif input == "3" then 
 		print(result)
