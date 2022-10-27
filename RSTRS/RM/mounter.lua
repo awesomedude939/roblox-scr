@@ -114,10 +114,10 @@ while wait() do
 			rconsoleprint("Class Created and selected.\n")
 		else 
 			local pgui = game:GetService("Players").LocalPlayer.PlayerGui
-			local selection = game.Players.LocalPlayer.PlayerScripts.SelectionService.GetSelection:Invoke()[1]
+			local selection = game.Players.LocalPlayer.PlayerScripts.SelectionService.GetSelection:Invoke()
 
 			if selection then
-				if table.len(selection) == 1 then
+				if #selection == 1 then
 					local RobloxName = selection.ClassName
 					local RetroName = nil
 					local Year = tonumber(name) or 0
