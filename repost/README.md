@@ -1,3 +1,21 @@
+## DRAGGABLE UI MODULE - Spynaz
+### https://www.roblox.com/library/2780820589/Draggable-UI-Module
+
+```lua
+[DraggableObject] DraggableObject.new(GuiObject)
+```
+Get draggable object.
+
+```lua
+[null] DraggableObject:Enable()
+```
+Enable dragging in draggable object.
+
+```lua
+[null] DraggableObject:Disable()
+```
+Disable dragging in draggable object.
+
 ## PNG READER - MaximumADHD
 
 ```lua
