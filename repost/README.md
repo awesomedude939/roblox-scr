@@ -1,6 +1,12 @@
 ## DRAGGABLE UI MODULE - Spynaz
-### https://www.roblox.com/library/2780820589/Draggable-UI-Module
+https://www.roblox.com/library/2780820589/Draggable-UI-Module
 
+### Loadstring
+```lua
+https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/repost/drag.lua
+```
+
+### Functions
 ```lua
 [DraggableObject] DraggableObject.new(GuiObject)
 ```
