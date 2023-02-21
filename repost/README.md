@@ -3,7 +3,7 @@ https://www.roblox.com/library/2780820589/Draggable-UI-Module
 
 ### Loadstring
 ```lua
-https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/repost/drag.lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/repost/drag.lua"))()
 ```
 
 ### Functions
