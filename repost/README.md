@@ -22,7 +22,7 @@ Enable dragging in draggable object.
 ```
 Disable dragging in draggable object.
 
---
+------------------------------------------------------------
 
 ## PNG READER - MaximumADHD
 
