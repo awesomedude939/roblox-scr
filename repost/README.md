@@ -26,6 +26,12 @@ Disable dragging in draggable object.
 
 ## PNG READER - MaximumADHD
 
+### Loadstring
+
+```lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/awesomedude939/roblox-scr/main/repost/png_reader.lua"))()
+```
+
 ### Functions
 ```lua
 [Png] PNG.new(file)
