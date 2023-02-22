@@ -1,3 +1,4 @@
+local getDATAtypexdtc_ycletabl_exdtgetDATAtype = {}
 function btostring(val, second_arg)
 	local classname = typeof(val)
 
@@ -122,7 +123,7 @@ function btostring(val, second_arg)
 			["\t"] = "\\t",
 			["\v"] = "\\v"
 		}
-
+		
 		for i,v in pairs(special) do 
 			if string.match(val, i) then 
 				rval = string.gsub(val,i,v)
@@ -172,7 +173,7 @@ function btostring(val, second_arg)
 			-- other
 			["btostring"] = btostring
 		}
-
+		
 		for i,v in pairs(functionlist) do
 			if val == v then 
 				return i
@@ -180,28 +181,28 @@ function btostring(val, second_arg)
 		end
 		return "unkfunc"
 	elseif classname == "table" then
-		if val ~= second_arg then 
-			local finishedstring = "{"
-			if val == _G then return "_G" end
-			local lastval
-			for i,v in pairs(val) do
-				lastval = i
+		if not table.find(getDATAtypexdtc_ycletabl_exdtgetDATAtype, val) then 
+		table.insert(getDATAtypexdtc_ycletabl_exdtgetDATAtype, val)
+		local finishedstring = "{"
+		if val == _G then return "_G" end
+		local lastval
+		for i,v in pairs(val) do
+		    lastval = i
+		end
+		for i,v in pairs(val) do
+		    if typeof(i) == "string" then 
+    		    finishedstring ..= string.format("[\"%s\"] = ", btostring(i))
+    		else 
+    		    finishedstring ..= string.format("[%s] = ", btostring(i))
 			end
-			for i,v in pairs(val) do
-
-				if typeof(i) == "string" then 
-					finishedstring ..= string.format("[\"%s\"] = ", btostring(i))
-				else 
-					finishedstring ..= string.format("[%s] = ", btostring(i))
-				end
-				finishedstring ..= btostring(v, val)
-				if i ~= lastval then 
-					finishedstring ..= ", "
-				end
+			finishedstring ..= btostring(v, val)
+			if i ~= lastval then 
+			    finishedstring ..= ", "
 			end
-
-			finishedstring ..= "}"
-			return finishedstring
+		end
+		
+		finishedstring ..= "}"
+		return finishedstring
 		else 
 			return "{\"*** cycle table reference detected ***\"}"
 		end
