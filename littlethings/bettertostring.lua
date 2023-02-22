@@ -1,4 +1,4 @@
-return function(val, second_arg)
+function btostring(val, second_arg)
 	local classname = typeof(val)
 
 	if classname == "Axes" then 
