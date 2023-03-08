@@ -192,7 +192,7 @@ function btostring(val, second_arg)
 			end
 			for i,v in pairs(val) do
 				if typeof(i) == "string" then 
-					finishedstring ..= string.format("[\"%s\"] = ", btostring(i,"xva"))
+					finishedstring ..= string.format("[%s] = ", btostring(i,"xva"))
 				else 
 					finishedstring ..= string.format("[%s] = ", btostring(i, "xva"))
 				end
